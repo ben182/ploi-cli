@@ -2,9 +2,9 @@
 
 namespace App\Commands;
 
+use App\Api;
 use App\Command;
 use App\Scripts\AddWpCliScript;
-use App\Api;
 
 class AddAllScripts extends Command
 {
@@ -32,12 +32,6 @@ class AddAllScripts extends Command
         parent::__construct();
     }
 
-    protected function getAllScripts(){
-        return [
-            AddWpCliScript::class,
-        ];
-    }
-
     /**
      * Execute the console command.
      *
@@ -48,8 +42,15 @@ class AddAllScripts extends Command
         /** @var \App\Scripts\Script $script */
 
         foreach ($this->getAllScripts() as $script) {
-            $script = new $script;
+            $script   = new $script;
             $response = $api->createScript($script->name, $script->getScriptContent(), $script->user);
         }
+    }
+
+    protected function getAllScripts()
+    {
+        return [
+            AddWpCliScript::class,
+        ];
     }
 }

@@ -3,10 +3,7 @@
 namespace App\Commands;
 
 use App\Command;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Scheduling\Schedule;
-use Spatie\Valuestore\Valuestore;
-use Illuminate\Support\Facades\Storage;
 
 class AddApiKeyCommand extends Command
 {

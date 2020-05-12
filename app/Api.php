@@ -3,10 +3,7 @@
 namespace App;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use Spatie\Valuestore\Valuestore;
-use Illuminate\Support\Facades\Storage;
 
 class Api
 {
