@@ -5,7 +5,7 @@ return [
     'disks'   => [
         'local' => [
             'driver' => 'local',
-            'root'   => getcwd(),
+            'root'   => getenv('HOME')."/.config/ploi-cli/",
         ],
     ],
 ];
