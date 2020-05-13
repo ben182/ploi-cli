@@ -3,8 +3,8 @@
 namespace App\Commands;
 
 use App\Command;
+use App\Helper\Config;
 use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Support\Facades\Storage;
 
 class AddApiKeyCommand extends Command
 {
@@ -27,14 +27,11 @@ class AddApiKeyCommand extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(Config $config)
     {
         $apiKey = $this->secret('What is your ploi API key?');
 
-        // app('valuestore')->put('apiKey', $apiKey);
-        Storage::put('config.json', json_encode([
-            'key' => $apiKey,
-        ]));
+        $config->set('apiKey', $apiKey);
     }
 
     /**
