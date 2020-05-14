@@ -30,9 +30,10 @@ class InstallCommand extends Command
     public function handle(Bash $bash)
     {
         if (! $bash->command_exist('wp')) {
-            shell_exec('curl -k -L -s -S https://raw.github.com/wp-cli/builds/gh-pages/phar/wp-cli.phar > ~/.config/ploi-cli/wp-cli.phar');
-            shell_exec('chmod +x ~/.config/ploi-cli/wp-cli.phar');
-            shell_exec('ln -s ~/.config/ploi-cli/wp-cli.phar ~/.config/composer/vendor/bin/wp');
+            shell_exec('curl -k -L -s -S https://raw.github.com/wp-cli/builds/gh-pages/phar/wp-cli.phar > ' . storage_path('wp-cli.phar'));
+            shell_exec('chmod +x ' . storage_path('wp-cli.phar'));
+
+            shell_exec('ln -s ' . storage_path('wp-cli.phar') . ' ~/.config/composer/vendor/bin/wp');
         }
     }
 

@@ -23,9 +23,9 @@ class Config
     {
         $config = $this->get();
         unset($config[$name]);
-        Storage::put('config.json', json_encode($config));
+        Storage::disk('config')->put('config.json', json_encode($config));
 
-        return json_decode(Storage::get('config.json'), true);
+        return json_decode(Storage::disk('config')->get('config.json'), true);
     }
 
     /**
@@ -41,9 +41,9 @@ class Config
         $config        = $this->get();
         $config[$name] = $value;
 
-        Storage::put('config.json', json_encode($config));
+        Storage::disk('config')->put('config.json', json_encode($config));
 
-        return json_decode(Storage::get('config.json'), true);
+        return json_decode(Storage::disk('config')->get('config.json'), true);
     }
 
     /**
@@ -53,7 +53,7 @@ class Config
      */
     public function get($name = null, $silent = false)
     {
-        $config = json_decode(Storage::get('config.json'), true);
+        $config = json_decode(Storage::disk('config')->get('config.json'), true);
 
         if ($name === null) {
             return $config;
@@ -77,8 +77,8 @@ class Config
      */
     private function prepare():void
     {
-        if (! Storage::has('config.json')) {
-            Storage::put('config.json', json_encode([]));
+        if (! Storage::disk('config')->has('config.json')) {
+            Storage::disk('config')->put('config.json', json_encode([]));
         }
     }
 }
